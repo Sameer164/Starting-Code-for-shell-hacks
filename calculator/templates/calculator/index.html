@@ -1,0 +1,21 @@
+{% if request.user.is_authenticated %}
+    <p>{{request.user}}</p>
+    <a href = "#">Logout</a>
+{% else %}
+    <a href="{% url 'login' %}">Login</a>
+{% endif %}
+
+<hr>
+{% for all_budgets in budgets %}
+    <h1>{{all_budgets.budget}}</h1>
+    <h4><a href = "{% url 'budget-update' all_budgets.id %}">Update Budget</a></h4>
+    <hr>
+
+
+{% endfor %}
+
+{% if budgets.count > 1%}
+<a href = "#">Update budget</a>
+{% else %}
+<a href = "{% url 'budget-create' %}">Create budget</a>
+{% endif %}
